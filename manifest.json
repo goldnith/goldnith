@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Content Blocker",
+  "version": "1.0",
+  "description": "Blocks explicit content and adult sites.",
+  "permissions": ["declarativeNetRequest", "storage", "activeTab"],
+  "host_permissions": ["<all_urls>"],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "blocklist_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+
+}
